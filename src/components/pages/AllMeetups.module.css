@@ -1,0 +1,11 @@
+.allMeetupContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0rem auto 5rem auto;
+    padding: 0 1rem;
+    max-width: 80rem;
+    height: 100%;
+}
