@@ -39,7 +39,6 @@ const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
     };
   }
 
-  console.log('NewMeetupForm', uuidv4());
   const submitHandler = (e) => {
     setDisableSubmit(true);
     e.preventDefault();
@@ -50,6 +49,8 @@ const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
       clear();
     }, 2000);
   };
+
+  console.log('NewMeetupForm', meetupData);
 
   const clearFormData = () => {
     showModalToUser('Clear entered meetup data?');
