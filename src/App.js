@@ -3,7 +3,6 @@ import AllMeetups from './components/pages/AllMeetups';
 import Header from './components/global/header/Header';
 import Footer from './components/global/footer/Footer';
 import { Switch, Route } from 'react-router-dom/cjs/react-router-dom';
-import NewMeetupForm from './components/meetups/NewMeetupForm';
 import NewMeetup from './components/pages/NewMeetup';
 import Favorites from './components/pages/Favorites';
 import Modal from './components/global/modal/Modal';
@@ -51,7 +50,7 @@ const App = () => {
           <Favorites />
         </Route>
         <Route path="/new-meetup">
-          React.memo(<NewMeetupForm clearForm={clearForm} showModalToUser={showModalToUser} updateFormData={updateFormData} />)
+          <NewMeetup clearForm={clearForm} showModalToUser={showModalToUser} updateFormData={updateFormData} />
         </Route>
       </Switch>
       <Footer />
