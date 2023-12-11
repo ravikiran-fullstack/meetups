@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import AllMeetups from './components/pages/AllMeetups';
 import Header from './components/global/header/Header';
 import Footer from './components/global/footer/Footer';
@@ -6,13 +7,25 @@ import { Switch, Route } from 'react-router-dom/cjs/react-router-dom';
 import NewMeetup from './components/pages/NewMeetup';
 import Favorites from './components/pages/Favorites';
 import Modal from './components/global/modal/Modal';
-import { meetupsList } from './components/data/meetupsList';
 
 const App = () => {
-  const [meetups, setMeetups] = useState(meetupsList);
+  const [meetups, setMeetups] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [clearForm, setClearForm] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios('http://localhost:4000/api/meetups');
+        setMeetups(result.data);
+      } catch (error) {
+        setMeetups([]);
+        console.log(error);
+      }
+    }
+    fetchData();
+  }, []);
 
   const showModalToUser = (message) => {
     console.log('show modal to user');
@@ -30,6 +43,17 @@ const App = () => {
   const updateFormData = (data) => {
     console.log('updateFormData', data);
     setMeetups([...meetups, data]);
+
+    const postUpdatedMeetup = async () => {
+      try {
+        const result = await axios.post('http://localhost:4000/api/meetups', data);
+        console.log(result);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    postUpdatedMeetup();
   }
 
   const deleteMeetup = (id) => {

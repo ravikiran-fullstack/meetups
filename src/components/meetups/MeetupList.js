@@ -4,7 +4,7 @@ import classes from './MeetupList.module.css';
 const MeetupList = (props) => {
   return (
     <ul className={classes.list}>
-      {props.meetups.map((meetup) => (
+      {props.meetups && props.meetups.length  > 0 ? props.meetups.map((meetup) => (
         <MeetupItem
           key={meetup.id}
           id={meetup.id}
@@ -16,7 +16,7 @@ const MeetupList = (props) => {
           description={meetup.description}
           deleteMeetup={props.deleteMeetup}
         />
-      ))}
+      )) : <p>No meetups found</p>}
     </ul>
   );
 }
