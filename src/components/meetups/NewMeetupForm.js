@@ -5,7 +5,7 @@ import { v4 as uuidv4} from 'uuid';
 
 const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
   const [disableSubmit, setDisableSubmit] = useState(false);
-  console.log('NewMeetupForm', clearForm);
+  // console.log('NewMeetupForm', clearForm);
   const [meetupData, setMeetupData] = useState({
     title: '',
     image: '',
@@ -30,11 +30,18 @@ const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
       description: '',
       date: '',
       time: '',
+      favorite: true,
     });
   }
 
   function updateField() {
     return (e) => {
+      console.log('updateField', e.target.name, e.target.value);
+
+      if(e.target.name === 'favorite') {
+        return setMeetupData({ ...meetupData, [e.target.name]: e.target.checked });
+      }
+
       return setMeetupData({ ...meetupData, [e.target.name]: e.target.value });
     };
   }
@@ -42,7 +49,7 @@ const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
   const submitHandler = (e) => {
     setDisableSubmit(true);
     e.preventDefault();
-    console.log(meetupData);
+    // console.log(meetupData);
     updateFormData({ ...meetupData, id: uuidv4() });
     setTimeout(() => {
       setDisableSubmit(false);
@@ -50,7 +57,7 @@ const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
     }, 2000);
   };
 
-  console.log('NewMeetupForm', meetupData);
+  // console.log('NewMeetupForm', meetupData);
 
   const clearFormData = () => {
     showModalToUser('Clear entered meetup data?');
@@ -122,6 +129,16 @@ const NewMeetupForm = ({ clearForm, showModalToUser, updateFormData }) => {
           id="time"
           onChange={updateField()}
           value={meetupData.time}
+        />
+      </div>
+      <div className={classes.formControlCheckBox}>
+        <label htmlFor="time">Add To Favorites</label>
+        <input
+          type="checkbox"
+          name="favorite"
+          id="favorite"
+          checked={meetupData.favorite}
+          onChange={updateField()}
         />
       </div>
       <div className={classes.formActions}>

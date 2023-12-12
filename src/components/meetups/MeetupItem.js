@@ -16,8 +16,14 @@ const MeetupItem = (props) => {
         <address>{props.address}</address>
         <p>{props.description}</p>
         <div className={classes.actions}>
-          <button>Add To Favorites</button>
-          <button onClick={() => props.deleteMeetup(props.id)}>Delete Meetup</button>
+          {!props.favorite ? (
+            <button onClick={() => props.updateFavorite(props.id)}>Add To Favorites</button>
+          ) : (
+            <button onClick={() => props.updateFavorite(props.id)}>Remove From Favorites</button>
+          )}
+          <button onClick={() => props.deleteMeetup(props.id)}>
+            Delete Meetup
+          </button>
         </div>
       </div>
     </li>

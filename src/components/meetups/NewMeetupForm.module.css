@@ -32,6 +32,20 @@
   border-color: #4f005f;
   outline: none;
 }
+
+.formControlCheckBox{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.formControlCheckBox label{
+  font-weight: normal;
+  font-size: 1rem;
+  color: #333;
+  margin-right: 0.5rem;
+}
+
 .formActions {
   text-align: right;
 }

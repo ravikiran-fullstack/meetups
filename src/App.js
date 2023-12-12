@@ -13,6 +13,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [clearForm, setClearForm] = useState(false);
+  const [listUpdated, setListUpdated] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +26,7 @@ const App = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [listUpdated]);
 
   const showModalToUser = (message) => {
     console.log('show modal to user');
@@ -62,19 +63,39 @@ const App = () => {
     setMeetups(updatedMeetups);
   }
 
+     const updateFavorite = async (id) => {
+       try {
+         const result = await axios.put(
+           `http://localhost:4000/api/meetups/favorites/${id}`
+         );
+         console.log(result.data);
+         setListUpdated(!listUpdated);
+       } catch (error) {
+         console.log(error);
+       }
+     };
+
   return (
     <div className="container">
       <Header />
       {modalMessage}
       <Switch>
         <Route path="/" exact>
-          <AllMeetups meetupsList={meetups} deleteMeetup={deleteMeetup} />
+          <AllMeetups
+            meetupsList={meetups}
+            deleteMeetup={deleteMeetup}
+            updateFavorite={updateFavorite}
+          />
         </Route>
         <Route path="/favorites">
           <Favorites />
         </Route>
         <Route path="/new-meetup">
-          <NewMeetup clearForm={clearForm} showModalToUser={showModalToUser} updateFormData={updateFormData} />
+          <NewMeetup
+            clearForm={clearForm}
+            showModalToUser={showModalToUser}
+            updateFormData={updateFormData}
+          />
         </Route>
       </Switch>
       <Footer />

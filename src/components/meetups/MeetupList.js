@@ -13,8 +13,10 @@ const MeetupList = (props) => {
           address={meetup.address}
           date={meetup.date}
           time={meetup.time}
+          favorite={meetup.favorite}
           description={meetup.description}
           deleteMeetup={props.deleteMeetup}
+          updateFavorite={props.updateFavorite}
         />
       )) : <p>No meetups found</p>}
     </ul>

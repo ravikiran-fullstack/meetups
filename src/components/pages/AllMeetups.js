@@ -1,10 +1,7 @@
-import React from 'react';
 import MeetupList from '../meetups/MeetupList';
 import classes from './AllMeetups.module.css';
 
-
-
-const AllMeetups = ({ meetupsList, deleteMeetup }) => {
+const AllMeetups = ({ meetupsList, deleteMeetup, updateFavorite }) => {
   const updateMeetupList = (newMeetup) => {
     meetupsList.push(newMeetup);
     console.log(meetupsList);
@@ -17,6 +14,7 @@ const AllMeetups = ({ meetupsList, deleteMeetup }) => {
         meetups={meetupsList}
         updateMeetupList={updateMeetupList}
         deleteMeetup={deleteMeetup}
+        updateFavorite={updateFavorite}
       />
     </div>
   );
