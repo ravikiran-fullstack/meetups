@@ -57,10 +57,14 @@ const App = () => {
     postUpdatedMeetup();
   }
 
-  const deleteMeetup = (id) => {
-    console.log('deleteMeetup', id);
-    const updatedMeetups = meetups.filter(meetup => meetup.id !== id);
-    setMeetups(updatedMeetups);
+  const deleteMeetup = async (id) => {
+    try {
+      const results = await axios.delete(`http://localhost:4000/api/meetups/${id}`);
+      console.log(results.data);
+      setListUpdated(!listUpdated);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
      const updateFavorite = async (id) => {
