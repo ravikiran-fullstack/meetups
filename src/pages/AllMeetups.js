@@ -1,4 +1,4 @@
-import MeetupList from '../meetups/MeetupList';
+import MeetupList from '../components/meetups/MeetupList';
 import classes from './AllMeetups.module.css';
 
 const AllMeetups = ({ meetupsList, deleteMeetup, updateFavorite }) => {

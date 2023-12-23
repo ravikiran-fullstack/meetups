@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import classes from './Favorites.module.css';
 
 import axios from 'axios';
-import MeetupList from '../meetups/MeetupList';
+import MeetupList from '../components/meetups/MeetupList';
 
 const Favorites = ({ meetupsList, deleteMeetup }) => {
   const [favorites, setFavorites] = useState([]);
