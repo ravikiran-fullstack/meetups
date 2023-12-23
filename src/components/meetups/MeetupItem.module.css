@@ -55,3 +55,36 @@
   color: #ffffff;
   background-color: #6c2d8a;
 }
+
+.favoriteButton {
+  font: inherit;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  font-size: 0.75rem;
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(109, 109, 109);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

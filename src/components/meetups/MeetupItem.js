@@ -1,5 +1,8 @@
 import classes from './MeetupItem.module.css';
 
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+
 const MeetupItem = (props) => {
   return (
     <li className={classes.item}>
@@ -17,9 +20,25 @@ const MeetupItem = (props) => {
         <p>{props.description}</p>
         <div className={classes.actions}>
           {!props.favorite ? (
-            <button onClick={() => props.updateFavorite(props.id)}>Add To Favorites</button>
+            <span
+              className={`${classes.favoriteButton} ${classes.tooltip}`}
+              onClick={() => props.updateFavorite(props.id)}
+            >
+              <FavoriteBorderOutlinedIcon />
+              <span className={classes.tooltiptext}>
+                Add Event to Favorites
+              </span>
+            </span>
           ) : (
-            <button onClick={() => props.updateFavorite(props.id)}>Remove From Favorites</button>
+            <span
+              className={`${classes.favoriteButton} ${classes.tooltip}`}
+              onClick={() => props.updateFavorite(props.id)}
+            >
+              <FavoriteOutlinedIcon />
+              <span className={classes.tooltiptext}>
+                Remove Event from Favorites
+              </span>
+            </span>
           )}
           <button onClick={() => props.deleteMeetup(props.id)}>
             Delete Meetup

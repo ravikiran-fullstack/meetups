@@ -1,5 +1,5 @@
 import classes from './NewMeetup.module.css';
-import NewMeetupForm from '../meetups/NewMeetupForm';
+import NewMeetupForm from '../components/meetups/NewMeetupForm';
 
 const NewMeetup = ({ showModalToUser, clearForm, updateFormData }) => {
   return (
